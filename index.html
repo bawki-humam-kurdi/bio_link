@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غريب الكريم</title>
+    <style>
+
+        
+        :root {
+            --primary-color: #0a5e54;
+            --secondary-color: #d4af37;
+            --accent-color: #e8c872;
+            --bg-color: #f5f5f0;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            background-image: radial-gradient(circle, rgba(10, 94, 84, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            border-radius: 3px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        h1:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+        }
+        
+        .telegram-link {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10, 94, 84, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        .telegram-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 94, 84, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            z-index: -1;
+        }
+        
+        .telegram-link:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .telegram-link h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .telegram-link h2::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230a5e54'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.41 14.5l-3.5-3.5 1.41-1.41 2.09 2.09 5.09-5.09 1.41 1.41-6.5 6.5z'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+        
+        .telegram-link a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), #0a7a6d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(10, 94, 84, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .telegram-link a::after {
+            content: '→';
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .telegram-link a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(10, 94, 84, 0.4);
+            background: linear-gradient(135deg, #0a7a6d, var(--primary-color));
+        }
+        
+        .telegram-link a:hover::after {
+            transform: translateX(5px);
+        }
+        
+        .islamic-pattern {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .pattern-1 {
+            top: 10%;
+            left: 5%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='%230a5e54'/%3E%3C/svg%3E");
+            background-size: contain;
+            animation: rotate 30s linear infinite;
+        }
+        
+        .pattern-2 {
+            bottom: 10%;
+            right: 5%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23d4af37' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            animation: pulse 4s ease infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1rem;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .links-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="islamic-pattern pattern-1"></div>
+        <div class="islamic-pattern pattern-2"></div>
+        
+        <header>
+            <h1> بانگەوازی ئیسلام</h1>
+        </header>
+        
+        <main>
+            <div class="links-container">
+							
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>[التوحيد بذرة لا تنبت إلا في أرض البراءة من الشرك/ 
+<br />
+تەوحید -موسوڵمانێتی- تۆوێکە ناڕوێت تەنها لە زەوی بەڕائەت وخۆبەریکردن لە شیرک -وئەهلەکەیدا- نەبێت)</p>
+                    <a href="https://t.me/bawkihumam1" target="_blank">باوکی هومام کوردی</a>
+                </div>
+							
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>بۆ ناسینی بەرەی ناحەق تا خۆمان بپاریزین لیان لە شەخسەوە هەتا گروپ و وڵات و شوینکەوتوان داواکارین لە الله تعالى گومڕامان نەکات.آمین</p>
+                    <a href="https://t.me/gumrakan1" target="_blank">ناساندنی گروپە گومراکان</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>بۆ ناسینی بەرەی ناحەق تا خۆمان بپاریزین لیان لە شەخسەوە هەتا گروپ و وڵات و شوینکەوتوان داواکارین لە الله تعالى گومڕامان نەکات.آمین</p>
+                    <a href="https://t.me/gumrakan2" target="_blank">ناساندنی گرووپە گومراکان یەدەگ</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>کەناڵیک بۆ بە ئاگابوون لە نیشانەکانی قیامەت و فیتنەی دەججاڵ و هاتنی ئیمامی مهدی</p>
+                    <a href="https://t.me/qiamat_nzika1" target="_blank">قیامەت نزیکە</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>مینبەرێکە وە قوتابخانەیکە بۆ گەیاندنی پەیامی توحیدی پاکی رب العالمين
+ئـامـانجـمـان خـزمەت کـردنـە
+بە قـوڕئان و سـوننـەتی پاڪ
+بە تێگەیشتنی پێشینی چاڪ</p>
+                    <a href="https://t.me/+2WY-KX_SIgtiNjIy" target="_blank">ئیسلام ناسین</a>
+                </div>
+								
+								
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>قال عبد الله بن مسعود:
+ «ارحم من في الأرض، يرحمك من في السماء»
+پێشەوا عبد اللە کوڕی مەسعود فەرموویەتی :
+« بەزەییت بێتەوە بەوەی لەسەر زەویە ، ئەوەی لە ئاسمانە - اللە - بەزەیی دێتەوە پێتدا ».🌺
+<br />
+[ كتاب الزهد لوكيع |٤٩٩ ]</p>
+                    <a href="https://t.me/sadayhaq013" target="_blank">پێگەی سەدای حەق</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>هُدًى وَرَحْمَةً لِلْمُحْسِنِينَ
+کەنالیک پراوپڕ لەجوانی لەفەرموودەی. پەروەردگار  
+قورئان خوینە عقیدە پاکەکان
+کەلامي مـۆحیدان</p>
+                    <a href="https://t.me/alll_huda" target="_blank">الهُدىٰ</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>لێرەوە لەگەڵ ئایەتەکانۍ قورئانۍ پیرۆز بژی، 
+تابەسەرفرازۍ بمرۍ بإذن اللەتعالی</p>
+                    <a href="https://t.me/rebazye_quran1" target="_blank">لە خزمەت تەدەبووری قورئان</a>
+                </div>
+								
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>زانایانی خراپ...بنەمای وێرانبوونی ئوممەتی ئیسلامین
+<br>
+علماء السوء.. أساس خراب الأمة الإسلامية</p>
+                    <a href="https://t.me/zana_xarapakan1446" target="_blank">بەکرێگیراوەکان نەک زاناکان</a>
+                </div>
+                
+                <div class="telegram-link">
+                    <h2>Telegram</h2>
+<p>بەسودترین وتە گەوهەرییەکان و ئامۆژگارییە بەنرخەکانی سەرکردەکانی تیگۆشەڕکانی ئیسلام ڵیرە ببینە </p>
+                    <a href="https://t.me/kashti_muahidann1" target="_blank">وتە گەوهەرییەکان</a>
+                </div>
+								
+								
+            </div>
+        </main>
+        
+        <footer>
+<p>2025 باوکی هومام کوردی، مافی ئەم بەرهەمە پارێزراوە</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Animate elements on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.telegram-link');
+            
+            links.forEach((link, index) => {
+                // Initial animation delay
+                link.style.transitionDelay = `${index * 0.1}s`;
+                
+                // Add hover effect with shadow
+                link.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.telegram-link').forEach(link => {
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(20px)';
+                link.style.transition = 'all 0.6s ease';
+                observer.observe(link);
+            });
+            
+            // Animate title on load
+            const title = document.querySelector('h1');
+            setTimeout(() => {
+                title.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    title.style.transform = 'scale(1)';
+                }, 300);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
